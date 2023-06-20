@@ -16,7 +16,6 @@ body{
 }
 input:focus{
     outline: none;
-    border: none;
 }
 a{
     text-decoration: none;
@@ -70,6 +69,39 @@ header{
     padding: 1rem 2rem;
 }
 
+/* ---sign up page--- */
+form {
+    width: 30%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-inline: auto;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+}
+form h2 {
+    text-align: center;
+    font-size: 2.3rem;
+}
+label{
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 1.2rem;
+}
+input{
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1.8rem;
+    font-size: 1.25rem;
+}
+.signup-btn{
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin: 0 auto;
+    display: block;
+}
 /* ---footer--- */
 footer{
     text-align: center;

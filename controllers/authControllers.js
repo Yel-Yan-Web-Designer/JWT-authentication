@@ -14,7 +14,7 @@ function handleErrors(err){
     // validation errors
     if(err.message.includes("User validation failed")){
         Object.values(err.errors).forEach(x => {
-            let { properties} = x;
+            let { properties } = x;
             errors[properties.path] = properties.message;
         })
     }
@@ -25,17 +25,18 @@ function handleErrors(err){
 
 // controller action 
 const signup_get = async (req, res) =>{
-    try {
-        const allUsers = await User.find({});
-        return res.status(200).send({ allUsers});
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send("Error, user not created");
-    }
+    // try {
+    //     const allUsers = await User.find({});
+    //     return res.status(200).send({ allUsers});
+    // } catch (err) {
+    //     console.log(err);
+    //     return res.status(400).send("Error, user not created");
+    // }
+    res.render("signup");
 }
 
 const login_get = (req, res) => {
-    res.send("login get");
+    res.render("login");
 }
 
 const signup_post =  async (req, res) => {

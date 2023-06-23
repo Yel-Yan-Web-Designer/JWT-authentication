@@ -102,6 +102,9 @@ input{
     margin: 0 auto;
     display: block;
 }
+.error{
+    color : hsl(0, 86%, 48%);
+}
 /* ---footer--- */
 footer{
     text-align: center;

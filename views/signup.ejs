@@ -4,11 +4,11 @@
     <h2>Sign Up</h2>
     <label for="email">Email</label>
     <input type="text" name="email" required>
-    <div class="email error"></div>
+    <div class="email-err error"></div>
     <label for="password" >Password</label>
     <input type="password" 
    name="password" required>
-    <div class="password error"></div>
+    <div class="password-err error"></div>
     <button class="btn signup-btn">Sign Up</button>
 </form>
 
@@ -23,6 +23,9 @@
         let email = form.email.value;
         let password = form.password.value;
 
+        // reset error display
+        document.querySelector(".email-err").textContent = "";
+        document.querySelector(".password-err").textContent = "";
         try {
             let res = await fetch("/signup", {
                 method : "POST",
@@ -31,7 +34,18 @@
                     "Accept": "application/json"
                 },
                 body : JSON.stringify({ email : email , password : password})
-            })
+            });
+
+            const data = await res.json();
+            
+            if(data.errors){
+                document.querySelector(".email-err").textContent = data.errors.email;
+                document.querySelector(".password-err").textContent = data.errors.password;
+            }
+
+            if(data.user){
+                window.location.assign("/")
+            }
         } catch (error) {
             console.log(error)
         }

@@ -49,10 +49,10 @@ const signup_post =  async (req, res) => {
             httpOnly : true,
             maxAge : maxAge * 1000
         })
-        return  res.status(201).json(user._id);
+        return  res.status(201).json({ user });
     } catch (err) {
        const errors =  handleErrors(err);
-       return res.status(400).json(errors);
+       return res.status(400).json({errors});
     }
 }
 

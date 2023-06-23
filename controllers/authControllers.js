@@ -57,10 +57,14 @@ const signup_post =  async (req, res) => {
 }
 
 
-const login_post = (req, res) => {
+const login_post = async (req, res) => {
     const {email, password} = req.body;
-    console.log(email, password);
-    res.send("login post")
+    try {
+        const userCheck = await User.login(email, password);
+        return res.status(201).json({user : userCheck._id})
+    } catch (error) {
+        return res.status(400).send("Client side error")
+    }
 }
 
 module.exports = {

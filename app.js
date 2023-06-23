@@ -36,5 +36,13 @@ app.get("/", (req, res) => {
 app.get("/smoothies", (req, res) => {
     return res.render("smoothies")
 })
+
 // authentication
 app.use(authRoutes);
+
+
+// cookies
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+

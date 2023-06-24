@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
+const requireAuthMiddleware = require("./middleware/authMiddleware");
+
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 
 const connectDB = require('./db/connectDB');
@@ -8,7 +11,8 @@ const connectDB = require('./db/connectDB');
 // middleware
 app.use(express.static('./public'));
 app.use(express.json()); // change json string into json when post req
-
+// cookies
+app.use(cookieParser());
 // view engine
 app.set('view engine', "ejs");
 
@@ -33,7 +37,7 @@ start();
 app.get("/", (req, res) => {
     return res.render("home")  
 })
-app.get("/smoothies", (req, res) => {
+app.get("/smoothies", requireAuthMiddleware ,(req, res) => {
     return res.render("smoothies")
 })
 
@@ -41,8 +45,6 @@ app.get("/smoothies", (req, res) => {
 app.use(authRoutes);
 
 
-// cookies
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
+
 
 

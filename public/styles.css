@@ -28,12 +28,23 @@ img{
     object-fit: cover;
 }
 ul{
+    display: flex;
+    column-gap: 1.5rem;
     list-style: none;
 }
 /* -----nav----- */
 nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem 2rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.nav-btn a{
+    color: whitesmoke;
+    background: hsl(120, 40%, 60%);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
 }
 /* -----home----- */
 header{

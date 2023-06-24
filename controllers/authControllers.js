@@ -6,6 +6,16 @@ function handleErrors(err){
     console.log(err.message, err.code);
     let errors = {email : "", password : ""}; 
 
+    // incorrect email
+    if(err.message === "incorrect email"){
+        errors.email = err.message
+    }
+    
+    // incorrect pasword
+    if(err.message === "incorrect password"){
+        errors.password = err.message;
+    }
+
     // duplicate email error
     if(err.code === 11000){
         errors.email = "This email is already registered"
@@ -61,9 +71,12 @@ const login_post = async (req, res) => {
     const {email, password} = req.body;
     try {
         const userCheck = await User.login(email, password);
+        const token = await createToken(userCheck._id);
+        res.cookie("jwt", token , {httpOnly : true , maxAge : maxAge * 1000 })
         return res.status(201).json({user : userCheck._id})
     } catch (error) {
-        return res.status(400).send("Client side error")
+        const errors = handleErrors(error);
+        return res.status(400).json({ errors });
     }
 }
 

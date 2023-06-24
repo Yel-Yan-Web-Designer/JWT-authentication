@@ -17,7 +17,7 @@
 <script>
     const form = document.querySelector("form");
 
-form.addEventListener("submit",async function (e){
+form.addEventListener("submit", async function (e){
     e.preventDefault();
     
     let email = form.email.value;
@@ -26,6 +26,7 @@ form.addEventListener("submit",async function (e){
     // reset error display
     document.querySelector(".email-err").textContent = "";
     document.querySelector(".password-err").textContent = "";
+    
     try {
         let res = await fetch("/login", {
             method : "POST",
@@ -44,10 +45,10 @@ form.addEventListener("submit",async function (e){
         }
 
         if(data.user){
-            window.location.assign("/")
+            window.location.assign("/");
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
     
 })

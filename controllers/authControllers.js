@@ -48,6 +48,10 @@ const signup_get = async (req, res) =>{
 const login_get = (req, res) => {
     res.render("login");
 }
+const logout_get = (req, res) => {
+    res.cookie('jwt', '' , { maxAge : maxAge})
+    res.redirect("/")
+}
 
 const signup_post =  async (req, res) => {
     const { email, password} = req.body;
@@ -84,5 +88,6 @@ module.exports = {
     signup_get,
     login_get,
     signup_post,
-    login_post
+    login_post,
+    logout_get
 }

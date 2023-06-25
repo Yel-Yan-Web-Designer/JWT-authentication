@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 // handle err for email & password
 function handleErrors(err){
@@ -35,7 +36,7 @@ function handleErrors(err){
 // create json web token
 const maxAge = 3 * 24 * 60 * 60 ;
 const createToken = (id) => {
-    return jwt.sign({ id }, "jwt secret code", {
+    return jwt.sign({ id }, "jwt secret code" , {
         expiresIn : maxAge
     })
 }
@@ -49,8 +50,8 @@ const login_get = (req, res) => {
     res.render("login");
 }
 const logout_get = (req, res) => {
-    res.cookie('jwt', '' , { maxAge : maxAge})
-    res.redirect("/")
+    res.cookie('jwt', '' , { maxAge : 1})
+    res.redirect("/");
 }
 
 const signup_post =  async (req, res) => {

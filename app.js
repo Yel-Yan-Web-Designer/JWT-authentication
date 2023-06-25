@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const requireAuthMiddleware = require("./middleware/authMiddleware");
+const {requireAuthMiddleware, checkUser} = require("./middleware/authMiddleware");
 
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
@@ -34,6 +34,7 @@ start();
 
 
 // routes
+app.get("*", checkUser); // * means every routes
 app.get("/", (req, res) => {
     return res.render("home")  
 })

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connectDB = async (url) => {
+const connectDB = (url) => {
     return mongoose.connect(url , {
         useNewUrlParser : true,
         useUnifiedTopology : true,

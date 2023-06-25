@@ -13,8 +13,12 @@
         </h1>
 
         <ul>
+            <% if (user){%>
+            <h4>Welcome <%= user.email%> </h4>
             <li><a href="/logout">Logout</a></li>
+            <%} else {%>
             <li><a href="/login">Login</a></li>
             <li class="nav-btn"><a href="/signup">Sign Up</a></li>
+            <% } %>
         </ul>
     </nav>
